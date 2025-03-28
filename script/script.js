@@ -35,11 +35,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         productCard.appendChild(price);
 
                         const buyButton = document.createElement("button");
-                        buyButton.textContent = "Buy now";
+                        buyButton.textContent = "Lägg till";
                         buyButton.classList.add("buy-button");
                         buyButton.onclick = (e) => {
                             e.stopPropagation(); 
                             gotoForm(product);
+                            addToCart(product);
                         };
 
                         productCard.appendChild(buyButton);
@@ -54,4 +55,9 @@ document.addEventListener("DOMContentLoaded", function () {
 function gotoForm(product) {
     sessionStorage.setItem("selectedProduct", JSON.stringify(product));
     window.location.href = "form.html";
+}
+
+function addToCart(product) {
+    console.log("hej");
+    
 }
