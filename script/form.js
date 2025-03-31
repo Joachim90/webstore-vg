@@ -2,15 +2,38 @@ document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("order-form");
 
     const submitBtn = document.getElementById("submit-btn");
+    const clearBtn = document.getElementById("clear-cart-btn");
 
-    const product = JSON.parse(localStorage.getItem("selectedProduct"));
+    
+    clearBtn.addEventListener("click", function(){
+        console.log("hej");
+        cart = [];
+        renderCart();
+        localStorage.clear();
+    })
 
-    if (product) {
-        document.getElementById("product-price").innerHTML = `$${product.price} `;
-        document.getElementById('product-image').src = product.image;
-        document.getElementById('product-title').innerHTML = product.title;
-        document.getElementById('order-total').innerHTML = `$${product.price}`;
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const inCart = document.getElementById("in-cart");
+
+    renderCart();
+    function renderCart(){
+    if (cart.length > 0) {
+        cart.forEach(element => {
+            inCart.innerHTML += `<div class="product-card-form">
+                                <img src="${element.image}" alt="${element.title}">
+                                <h3>${element.title}</h3>
+                                <p class="product-price-form">$${element.price}</p>
+                                <h3>Antal: </h3>
+                                </div`;
+            });
+        
+        }else{
+            inCart.innerHTML = "<p>Varukorgen är tom</p>"
+        }
     }
+
+
 
     if (form) {
         document.getElementById('form-zipcode').addEventListener("change", function () {

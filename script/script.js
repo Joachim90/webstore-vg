@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "electronics": "elektronik-produkter"
     };
 
+    
+
     fetch("https://fakestoreapi.com/products")
         .then(response => response.json())
         .then(products => {
@@ -37,8 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         buyButton.textContent = "Lägg till";
                         buyButton.classList.add("buy-button");
                         buyButton.onclick = (e) => {
-                            e.stopPropagation(); 
-                            gotoForm(product);
+                            e.stopPropagation();
                             addToCart(product);
                         };
 
@@ -51,12 +52,16 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => console.error("Error fetching products:", error));
 });
 
-function gotoForm(product) {
-    localStorage.setItem("selectedProduct", JSON.stringify(product));
-    window.location.href = "form.html";
-}
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+
+
 
 function addToCart(product) {
-    console.log("hej");
-    
+    cart.push(product);
+    console.log(cart[0])
+}
+
+function gotoCart(){
+    localStorage.setItem("cart", JSON.stringify(cart));
 }

@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Storefront Demo</title>
-    <script src="script/form.js"></script>
     <link rel="icon" href="images/monogram-16px.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +15,7 @@
     <script src="https://kit.fontawesome.com/634aafba64.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    
     <header>
         <div class="outer">
             <div class="logo">
@@ -32,8 +32,8 @@
                 <div class="container mt-3">
                     <div class="row">
                         <div class="col-12 col-md-6 mb-4">
-                            <div class="row">
-                                 <div class="col-12">
+                            <div class="row" id="in-cart">
+                                 <!--<div class="col-12">
                                     <h5 id="product-title" class="mt-2">Produktnamn</h5>
                                  </div>
                                 <div class="col-12">
@@ -45,11 +45,14 @@
                                         <p><strong>Antal:</strong> <span id="product-amount">1</span></p>
                                         <p><strong>Summa:</strong> <span id="order-total">299 SEK</span></p>
                                         <div class="d-flex align-items-center">
-                                            <!-- <input type="number" id="quantity" class="form-control mx-2" value="1" min="0" style="width: 60px; text-align: center;"> -->
+                                             <input type="number" id="quantity" class="form-control mx-2" value="1" min="0" style="width: 60px; text-align: center;"> 
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
+                                
+                                <p>Varukorg</p>
                             </div>
+                            <button class="btn btn-danger mb-3" id="clear-cart-btn">Rensa varukorgen</button>
                         </div>
                         <div class="col-12 col-md-6" id="order-form">
                             <form>
@@ -131,5 +134,6 @@
         </ul>
     </div>
 </footer>
+<script src="script/form.js"></script>
 </body>
 </html> 
