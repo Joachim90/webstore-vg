@@ -25,13 +25,20 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <img src="${element.image}" alt="${element.title}">
                                 <h3>${element.title}</h3>
                                 <p class="product-price-form">$${element.price}</p>
-                                <h3>Antal: ${cartAmount[element.id]} </h3>
-                                </div`;
+                                <h3>Antal: <button class="btn btn-outline-secondary quantity-btn" onclick="changeQuantity(element.id, -1)"><</button>${cartAmount[element.id]}<button class="btn btn-outline-secondary quantity-btn" onclick="changeQuantity(element.id, 1)">></button> </h3>
+                                <h3>$${element.price * cartAmount[element.id]}</h3>
+                                </div>`;
             });
         
         }else{
             inCart.innerHTML = "<p>Varukorgen är tom</p>"
         }
+    }
+
+
+    function changeQuantity(productId, change){
+        
+
     }
 
 

@@ -632,4 +632,11 @@ header {
     scroll-margin-top: 100px; 
 }
 
+.quantity-btn{
+    color: black;
+    border-radius: 50%;
+    padding: 0px 7px;
+    margin: 2px
+}
+
 
