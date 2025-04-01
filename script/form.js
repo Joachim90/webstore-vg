@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let cartAmount = JSON.parse(localStorage.getItem("cartAmount")) || {};
 
     const inCart = document.getElementById("in-cart");
 
@@ -24,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <img src="${element.image}" alt="${element.title}">
                                 <h3>${element.title}</h3>
                                 <p class="product-price-form">$${element.price}</p>
-                                <h3>Antal: </h3>
+                                <h3>Antal: ${cartAmount[element.id]} </h3>
                                 </div`;
             });
         

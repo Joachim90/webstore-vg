@@ -52,16 +52,20 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => console.error("Error fetching products:", error));
 });
 
+let cartAmount = JSON.parse(localStorage.getItem("cartAmount")) || {};
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 
 
 
 function addToCart(product) {
-    cart.push(product);
-    console.log(cart[0])
-}
+    if (cartAmount[product.id]) {
+        cartAmount[product.id] += 1; // Öka kvantiteten om produkten redan finns
+    } else {
+        cartAmount[product.id] = 1; // Lägg till produkten med kvantitet 1
+        cart.push(product);
 
-function gotoCart(){
+    }
+    localStorage.setItem("cartAmount", JSON.stringify(cartAmount));
     localStorage.setItem("cart", JSON.stringify(cart));
 }
