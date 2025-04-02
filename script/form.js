@@ -1,3 +1,7 @@
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cartAmount = JSON.parse(localStorage.getItem("cartAmount")) || {};
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("order-form");
 
@@ -12,34 +16,13 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.clear();
     })
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let cartAmount = JSON.parse(localStorage.getItem("cartAmount")) || {};
-
-    const inCart = document.getElementById("in-cart");
-
+  
     renderCart();
-    function renderCart(){
-    if (cart.length > 0) {
-        cart.forEach(element => {
-            inCart.innerHTML += `<div class="product-card-form">
-                                <img src="${element.image}" alt="${element.title}">
-                                <h3>${element.title}</h3>
-                                <p class="product-price-form">$${element.price}</p>
-                                <h3>Antal: <button class="btn btn-outline-secondary quantity-btn" onclick="changeQuantity(element.id, -1)"><</button>${cartAmount[element.id]}<button class="btn btn-outline-secondary quantity-btn" onclick="changeQuantity(element.id, 1)">></button> </h3>
-                                <h3>$${element.price * cartAmount[element.id]}</h3>
-                                </div>`;
-            });
-        
-        }else{
-            inCart.innerHTML = "<p>Varukorgen är tom</p>"
-        }
-    }
+
+    
 
 
-    function changeQuantity(productId, change){
-        
-
-    }
+    
 
 
 
@@ -115,3 +98,47 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+
+    //
+    const inCart = document.getElementById("in-cart");
+
+    function renderCart(){
+        inCart.innerHTML = "";
+        let cartSum = 0;
+        if (cart.length > 0) {
+            cart.forEach(element => {
+                let productSum = (element.price * cartAmount[element.id]).toFixed(2)
+                cartSum += parseFloat(productSum);
+                inCart.innerHTML += `<div class="product-card-form">
+                                    <img src="${element.image}" alt="${element.title}">
+                                    <h3>${element.title}</h3>
+                                    <p class="product-price-form">$${element.price}</p>
+                                    <h3>Antal: <button class="btn btn-outline-secondary quantity-btn" onclick="changeQuantity(${element.id}, -1)"><</button>${cartAmount[element.id]}<button class="btn btn-outline-secondary quantity-btn" onclick="changeQuantity(${element.id}, 1)">></button> </h3>
+                                    <h3>Summa: $${productSum}</h3>
+                                    </div>`;
+                });
+                inCart.innerHTML += `<h3>Summa: $${(cartSum).toFixed(2)}</h3>`
+                
+            
+            }else{
+                inCart.innerHTML = "<p>Varukorgen är tom</p>"
+            }
+        }
+
+
+
+function changeQuantity(productId, change){
+    if (cartAmount[productId] == 1 && change == -1) {
+        delete cartAmount[productId]
+        cart = cart.filter(product => product.id !== productId);
+        
+    } else{
+        cartAmount[productId] += change; 
+
+    }
+    localStorage.setItem("cartAmount", JSON.stringify(cartAmount));
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+
+}

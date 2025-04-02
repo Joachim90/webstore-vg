@@ -286,6 +286,9 @@ main {
     font-size: 2em; 
     transition: background-color 0.3s; 
 }
+.buy-button:active {
+    background-color: rgba(130, 80, 80, 0.881);
+}
 
 .buy-button:hover {
     background-color: rgba(80, 100, 130, 0.881); 
