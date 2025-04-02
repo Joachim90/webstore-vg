@@ -1,11 +1,15 @@
 document.addEventListener("DOMContentLoaded", function() {
     
-    const product = JSON.parse(sessionStorage.getItem("orderProduct"));
-    const userInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
+    
+    let cart = JSON.parse(localStorage.getItem("cart"))
+    let cartAmount = JSON.parse(localStorage.getItem("cartAmount"))
+    const userInfo = JSON.parse(localStorage.getItem("orderInfo"));
+    const cartSumTotal = sessionStorage.getItem("totalCost");
     
     
     const orderNumber = Math.floor(100000 + Math.random() * 900000) + "SE";
     const orderDate = new Date().toLocaleDateString('sv-SE');
+    const inCart = document.getElementById("product-display");
     
     
     if (userInfo) {
@@ -20,19 +24,33 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     
-    if (product) {
-        document.getElementById('product-image').src = product.image;
-        document.getElementById('product-title').textContent = product.title;
-        document.getElementById("product-price").textContent = `$${product.price}`;
-        document.getElementById('order-total').textContent = `$${product.price}`;
+    if (cart) {
+        if (cart.length > 0) {
+            cart.forEach(element => {
+                let productSum = (element.price * cartAmount[element.id]).toFixed(2)
+                
+                inCart.innerHTML += `<div class="product-card-form">
+                                    <img src="${element.image}" alt="${element.title}">
+                                    <h3>${element.title}</h3>
+                                    <p class="product-price-form">$${element.price}</p>
+                                    <h3>Antal: ${cartAmount[element.id]}</h3>
+                                    <h3>Summa: $${productSum}</h3>
+                                    </div>`;
+                });
+                
+                
+            }
+        
     }
     
     
     document.getElementById('order-number').textContent = orderNumber;
     document.getElementById('order-date').textContent = orderDate;
+    document.getElementById('order-total').textContent = `$${cartSumTotal}`;
     
     
     const deliveryDate = new Date();
     deliveryDate.setDate(deliveryDate.getDate() + 3);
     document.getElementById('delivery-date').textContent = deliveryDate.toLocaleDateString('sv-SE');
+    localStorage.clear()
 });

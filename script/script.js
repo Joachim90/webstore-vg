@@ -41,6 +41,17 @@ document.addEventListener("DOMContentLoaded", function () {
                         buyButton.onclick = (e) => {
                             e.stopPropagation();
                             addToCart(product);
+
+                            let cartIcon = document.getElementById("cart-icon"); 
+                            
+                            cartIcon.style.transform = "scale(1.7)";
+                            cartIcon.style.backgroundColor = "rgb(117, 148, 196)";
+                            cartIcon.style.transition = "transform 0.3s ease-in-out, background-color 0.3s ease-in-out";
+
+                            setTimeout(() => {
+                                cartIcon.style.transform = "scale(1)";
+                                cartIcon.style.backgroundColor = "";
+                            }, 200);
                         };
 
                         productCard.appendChild(buyButton);
@@ -59,6 +70,7 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 
 function addToCart(product) {
+    
     if (cartAmount[product.id]) {
         cartAmount[product.id] += 1; // Öka kvantiteten om produkten redan finns
     } else {

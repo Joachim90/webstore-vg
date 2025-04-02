@@ -10,10 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     
     clearBtn.addEventListener("click", function(){
-        console.log("hej");
         cart = [];
-        renderCart();
         localStorage.clear();
+        renderCart();
     })
 
   
@@ -84,6 +83,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 isValid = false;
             }
 
+            if (cart.length == 0){
+                alert("Varukorgen är tom!")
+                isValid = false;
+            }
 
             if (isValid) {
                 localStorage.setItem("orderInfo", JSON.stringify(userInfo));
@@ -93,8 +96,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 window.location.href = "confirmation.html";
             } else {
-                alert("Vänligen fyll i alla fält korrekt!");
+                //alert("Vänligen fyll i alla fält korrekt!");
             }
+
+
+
         });
     }
 });
@@ -118,9 +124,10 @@ document.addEventListener("DOMContentLoaded", function () {
                                     <h3>Summa: $${productSum}</h3>
                                     </div>`;
                 });
+                //inCart.innerHTML += `<button class="btn btn-danger mb-3" id="clear-cart-btn">Rensa varukorgen</button>`
                 inCart.innerHTML += `<h3>Summa: $${(cartSum).toFixed(2)}</h3>`
                 
-            
+                sessionStorage.setItem("totalCost", cartSum.toFixed(2));
             }else{
                 inCart.innerHTML = "<p>Varukorgen är tom</p>"
             }

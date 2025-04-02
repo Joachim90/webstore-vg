@@ -287,7 +287,9 @@ main {
     transition: background-color 0.3s; 
 }
 .buy-button:active {
-    background-color: rgba(130, 80, 80, 0.881);
+    background-color: rgb(50, 70, 100) !important;
+    color: white;
+    
 }
 
 .buy-button:hover {
@@ -623,9 +625,6 @@ header {
     transform: translateY(-1px);
 }
 
-.newsletter-form button:active {
-    transform: translateY(0);
-}
 
 #support-faq,
 #support-payment-security,
