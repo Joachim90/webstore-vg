@@ -52,5 +52,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const deliveryDate = new Date();
     deliveryDate.setDate(deliveryDate.getDate() + 3);
     document.getElementById('delivery-date').textContent = deliveryDate.toLocaleDateString('sv-SE');
-    localStorage.clear()
+
+
+    localStorage.removeItem("cart");
+    localStorage.removeItem("cartAmount");
+    sessionStorage.removeItem("totalCost");
 });
