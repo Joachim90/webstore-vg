@@ -66,15 +66,12 @@ document.addEventListener("DOMContentLoaded", function () {
 let cartAmount = JSON.parse(localStorage.getItem("cartAmount")) || {};
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-
-
-
 function addToCart(product) {
     
     if (cartAmount[product.id]) {
-        cartAmount[product.id] += 1; // Öka kvantiteten om produkten redan finns
+        cartAmount[product.id] += 1;
     } else {
-        cartAmount[product.id] = 1; // Lägg till produkten med kvantitet 1
+        cartAmount[product.id] = 1;
         cart.push(product);
 
     }

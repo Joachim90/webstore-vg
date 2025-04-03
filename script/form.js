@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     
     clearBtn.addEventListener("click", function(){
-        cart = [];
-        localStorage.clear();
+        localStorage.removeItem("cart");
+        localStorage.removeItem("cartAmount");
         renderCart();
     })
 
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 window.location.href = "confirmation.html";
             } else {
-                //alert("Vänligen fyll i alla fält korrekt!");
+                alert("Vänligen fyll i alla fält korrekt!");
             }
 
 
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-    //
+    
     const inCart = document.getElementById("in-cart");
 
     function renderCart(){
@@ -120,11 +120,15 @@ document.addEventListener("DOMContentLoaded", function () {
                                     <img src="${element.image}" alt="${element.title}">
                                     <h3>${element.title}</h3>
                                     <p class="product-price-form">$${element.price}</p>
-                                    <h3>Antal: <button class="btn btn-outline-secondary quantity-btn" onclick="changeQuantity(${element.id}, -1)"><</button>${cartAmount[element.id]}<button class="btn btn-outline-secondary quantity-btn" onclick="changeQuantity(${element.id}, 1)">></button> </h3>
+                                    <h3>
+                                    Antal: <button class="btn btn-outline-secondary quantity-btn" onclick="changeQuantity(${element.id}, -1)"><</button>
+                                    ${cartAmount[element.id]}
+                                    <button class="btn btn-outline-secondary quantity-btn" onclick="changeQuantity(${element.id}, 1)">></button>
+                                    </h3>
                                     <h3>Summa: $${productSum}</h3>
                                     </div>`;
                 });
-                //inCart.innerHTML += `<button class="btn btn-danger mb-3" id="clear-cart-btn">Rensa varukorgen</button>`
+
                 inCart.innerHTML += `<h3>Summa: $${(cartSum).toFixed(2)}</h3>`
                 
                 sessionStorage.setItem("totalCost", cartSum.toFixed(2));
