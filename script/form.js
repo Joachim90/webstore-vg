@@ -61,9 +61,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 isValid = false;
             }
 
-            const phonePattern = /^[0-9]{10}$/;
+            const phonePattern = /^[0-9()\-\s]{1,50}$/;
             if (!phonePattern.test(userInfo.phone)) {
-                alert("Telefonnummer måste vara 10 siffror (exempel: 0701234567).");
+                alert("Telefonnummer får innehålla siffror, bindestreck och parenteser. Max 50 tecken.");
                 isValid = false;
             }
 
