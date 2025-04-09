@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 isValid = false;
             }
 
-            const phonePattern = /^[0-9()\-\s]{1,50}$/;
+            const phonePattern = /^[0-9\-\(\)]{1,50}$/;
             if (!phonePattern.test(userInfo.phone)) {
                 alert("Telefonnummer får innehålla siffror, bindestreck och parenteser. Max 50 tecken.");
                 isValid = false;
